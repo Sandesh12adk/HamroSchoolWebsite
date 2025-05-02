@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Welcome to demo page</h1>
+<h1>Festival</h1>
+<ul th:each="item: ${festival}"><!--  Be clear here festival is the list of the object -->
+    <li><h2 th:text="${item.reason}"></h2></li>
+    <li> <h4 th:text="${item.day}"></h4></li>
+    </ul>
+<h1>Federal</h1>
+<ul th:each="item: ${federal}"><!--  Be clear here festival is the list of the object -->
+    <li><h2 th:text="${item.reason}"></h2></li>
+    <li> <h4 th:text="${item.day}"></h4></li>
+</ul>
+</body>
+</html>

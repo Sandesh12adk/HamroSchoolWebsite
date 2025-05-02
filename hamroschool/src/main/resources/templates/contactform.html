@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<!-- contact block -->
+<section class="w3l-contact py-5" id="contact">
+    <div class="container py-md-5 py-4">
+        <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
+            <p class="text-uppercase">Get In Touch</p>
+            <h3 class="title-style">Contact Us</h3>
+        </div>
+        <div class="row contact-block ">
+            <div class="col-md-7 contact-right">
+                <!-- Display validation errors for fields -->
+                <ul th:each=" err: ${#fields.errors('contactobj.*')}" >
+                    <li class="alert alert-danger" role="alert"  th:text="${err}"></li>
+                </ul>
+                <form th:action="@{/saveMsg}" method="post" class="signin-form" th:object="${contactobj}">
+                    <div class="input-grids">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{name}" id="name" placeholder="Your Name"
+                                       class="contact-input" />
+
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" th:field="*{mobileno}" id="mobileNum" placeholder="Your Mobile Number"
+                                       class="contact-input" />
+                            </div>
+                        </div>
+                        <input type="text" th:field="*{email}" id="email" placeholder="Your Email"
+                               class="contact-input" />
+
+                        <input type="text" th:field="*{subject}" id="subject" placeholder="Subject"
+                               class="contact-input" />
+                    </div>
+                    <div class="form-input">
+                        <textarea th:field="*{message}" id="message" placeholder="Type your message here"></textarea>
+                    </div>
+                    <div class="text-start">
+                        <button class="btn btn-style btn-style-3">Send Message</button>
+                    </div>
+                </form>
+                <span th:if="${success== true}">
+                    <h4 class="alert alert-primary" role="alert">Data submitted Successfully!</h4>
+                </span>
+            </div> <!-- Closing div for contact-right -->
+        </div>
+    </div>
+</section>
+
+</body>
+</html>

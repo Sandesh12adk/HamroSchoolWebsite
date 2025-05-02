@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Add Holiday</title>
+</head>
+<body>
+
+<section class="w3l-contact py-5" id="contact">
+    <div class="container py-md-5 py-4">
+        <div class="title-main text-center mx-auto mb-md-5 mb-4" style="max-width:500px;">
+            <h3 class="title-style">Add Holiday</h3>
+        </div>
+        <div class="row contact-block">
+            <div class="col-md-7 contact-right">
+                <!-- Display validation errors for fields -->
+                <ul th:each="err: ${#fields.errors('holidayobj.*')}" >
+                    <li class="alert alert-danger" role="alert" th:text="${err}"></li>
+                </ul>
+
+                <!-- Success message display -->
+                <div th:if="${success}">
+                    <div class="alert alert-success" role="alert">
+                        Holiday added successfully!
+                    </div>
+                </div>
+
+                <form th:action="@{/saveholiday}" method="post" class="signin-form" th:object="${holidayobj}">
+                    <div class="input-grids">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <input type="text" placeholder="Day" th:field="*{day}" class="contact-input" />
+                            </div>
+                            <div class="col-sm-6">
+                                <input type="text" placeholder="Reason" th:field="*{reason}" class="contact-input" />
+                            </div>
+                        </div>
+
+                        <!-- Dropdown for selecting holiday type -->
+                        <select th:field="*{type}" class="contact-input col-sm-6">
+                            <option value="federal">Federal</option>
+                            <option value="festival">Festival</option>
+                            <option value="other">Other</option>
+                        </select>
+                    </div>
+
+                    <div class="text-start">
+                        <button class="btn btn-style btn-style-3">Add</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
